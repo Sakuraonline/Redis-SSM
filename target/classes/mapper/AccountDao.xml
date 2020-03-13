@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sakura.dao.AccountDao">
+    <!--对于 keyColumn = " "中写入的是数据库中对应的属性值,而keyProperty = " "中写入的是entity中实体类的属性值-->
+    <!--useGeneratedKeys为true表示插入成功后会返回其主键值并设置在原先插入的实体类中
+    (就比如,你插入只可能是name和money,而主键id是在插入后自动生成的,而将其设置为true后,会返回插入
+    后生成的主键)-->
+    <insert id="insertAccount" useGeneratedKeys="true" keyColumn="id" keyProperty="uid">
+        INSERT INTO account(name,money)
+        VALUES
+        (#{name},#{money})
+    </insert>
+
+    <select id="queryAccount" resultType="com.sakura.entity.Account" parameterType="int">
+        SELECT * FROM account WHERE id = #{id}
+    </select>
+</mapper>
